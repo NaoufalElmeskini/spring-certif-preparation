@@ -1,11 +1,11 @@
 # 5- Inside the Spring Container
 
 Plan :
-    The Spring Bean Lifecycle
-    The BeanFactoryPostProcessor interception point
-    The BeanPostProcessor interception point
-    Spring Bean Proxies
-    @Bean method return types
+- The Spring Bean Lifecycle
+- The BeanFactoryPostProcessor interception point
+- The BeanPostProcessor interception point
+- Spring Bean Proxies
+- @Bean method return types
 
 objectif :
 - expliquer le lifecycle de beans

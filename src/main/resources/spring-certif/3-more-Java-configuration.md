@@ -1,11 +1,11 @@
 # 3- More Java Configuration
 
-	External properties & Property sources
-	Environment abstraction
-	Using bean profiles
-	Spring Expression Language (SpEL)
+- External properties & Property sources
+- Environment abstraction
+- Using bean profiles
+- Spring Expression Language (SpEL)
 
-    Inter-Bean dependencies
+- Inter-Bean dependencies
 	
 ***
 

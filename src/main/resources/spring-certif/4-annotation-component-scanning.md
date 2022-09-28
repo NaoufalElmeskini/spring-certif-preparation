@@ -1,11 +1,11 @@
 # 4- Annotation + Component Scanning
 
 Plan :
-    Component scanning
-    Autowiring using @Autowired
-    Java configuration versus annotations, mixing.
-    Lifecycle annotations: @PostConstruct and @PreDestroy
-    Stereotypes and meta-annotations
+- Component scanning
+- Autowiring using @Autowired
+- Java configuration versus annotations, mixing.
+- Lifecycle annotations: @PostConstruct and @PreDestroy
+- Stereotypes and meta-annotations
 
 
 ***
