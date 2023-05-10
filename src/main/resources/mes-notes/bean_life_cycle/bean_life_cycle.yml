@@ -1,0 +1,85 @@
+
+questions:
+  - expliquer comment sont gérés les Beans dans Spring,
+    les principales phases, 
+    et les interfaces qui rentrent en jeu
+
+  - expliquer plus particulierement le role de BeanFactoryPostProcessor, et BeanPostProcessor
+#######
+
+Les beans dans spring connaissant 2 phases majeurs :
+    - chargement
+    - creation
+
+  dans la chargement, 
+  le bean est scanné et chargé par le container (ApplicationContext)
+  ensuite, un postprocessing est possible sur les definitions des beans chargés
+  
+  l'interface BeanFactoryPostProcessor permet de connaitre les definitions d'une BeanFactory, 
+  et changer ce definitions.
+  BeanFactoryPostProcessor{ postProcessBeanFactory(factory) }
+    
+    
+  dans la phase de creation, le bean est d'abord instancié, et ensuite initialisé
+    les dependances du bean sont créé,
+    l'injection est effectuée:  le bean est instancié, et les setters d'injection appelés
+
+    ensuite l'initialisation :
+      - les operations d'avant et apres initialisation sont appelés
+
+      l'interface BeanPostProcessor permet d'ajouter un controle sur ces phase
+      BeanPostProcessor{postProcessBeforeInitialization postProcessAfterInitialization}
+
+fun facts:
+  ApplicationContext est une implem de BeanFactory
+########
+  annexe:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  - quelle est la difference entre BeanFactoryPostProcessor et BeanPostProcessor ?
+  - donner exemple
+  - quel est lifecycle d'un BEAN ?
+#####################
+quelle est la difference entre BeanFactoryPostProcessor et BeanPostProcessor ?:
+
+  BeanFactoryPostProcessor:
+    agit sur une BeanFactory, et sur ses beans
+    - exeemple:
+      PlaceholderConfigurerSupport: remplace les @value $() par les valeurs données dans la configuration
+#####################
+quel est life cycle d'un BEAN ?:
+  phase chargement (loading):
+    parcourir les definitions de beans, potentiellement les changer 
+    - acteurs:
+      BeanFactoryPostProcessor{postProcessBeanFactory()}...
+
+  phase creation :
+    1.instantier 2. initialiser:
+    1. instancier:
+      constructor, setter
+
+
+    initialisation :
+      - 2 phases: avant initialisatio, apres initialition
+      - acteurs :
+            BeanPostProcessor
+
