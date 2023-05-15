@@ -1,0 +1,27 @@
+
+jdbc:
+  :
+    Java DataBase Connectivity
+    est une interface Java
+    
+    introduit des INTERFACES utiles pour manipuler efficacement la couche BDD
+    
+    necessite un DRIVER (mysql, mongodb...) qui implemente ces interfaces.
+
+  concretement :
+    package: javax.sql
+    exemples:
+      DataSource: objet contennt les parametres de connexiçon a la base
+      Statement, PreparedStatement... : contient la requete literale a executer par la base
+      ResultSet: represente le resultat d'une requete
+
+###########
+spring-data-jdbc:
+  :
+
+  JdbcTemplate :
+    utiliser le DesignPattern Template
+    permet d'obfusquer le bruit d'ouverture/fermeture/try/catch
+
+
+
