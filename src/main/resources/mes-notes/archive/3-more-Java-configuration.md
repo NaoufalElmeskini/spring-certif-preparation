@@ -9,6 +9,14 @@
 	
 ***
 
+Java configuration vs Annotation based config ?
+->
+1. java conf (aka @Configuration classe): remplace l'historique xml config... 
+remplacé par Java config 
+(@Configuration class) pour declarer nos beans
+2. annotation conf : ex @Component, @Service etc, qui evitent de declarer les 
+beans manuellement dans une classe de config
+
 Spring propose une Interface  : Environement 
     qui lit les properties decrites dans :
 

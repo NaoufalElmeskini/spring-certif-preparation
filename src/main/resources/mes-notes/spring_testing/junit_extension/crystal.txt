@@ -1,0 +1,30 @@
+
+Junit introduit la notion d'Extension
+
+une extension (interface) : un traitement que l'on aimerait faire sur une
+classe de test.
+
+5 exemples (@Baeldung) :
+    test instance post-processing
+        exemple: d'utiliser a reflection pour set un logger dans la
+        classe testée
+    conditional test execution
+    life-cycle callbacks
+    parameter resolution
+    exception handling
+
+utiliser une extension avec :
+    @ExtendWith(maSuperExtension.class)
+
+/*********************/
+/*********************/
+
+Spring propose une extension appellé SpringExtension,
+SpringExtension: classe qui implemente plusieurs sous-interface Extension.
+exemples :
+    - TestInstancePostProcessor
+    - ParameterResolver
+    - ...
+package: package org.springframework.test.context.junit.jupiter
+
+/*********************/
