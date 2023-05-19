@@ -1,0 +1,48 @@
+Authentication :
+    - authentication, principal
+
+    - AuthenticationProvider
+
+    - @EnableWebSecurity
+
+    - Filter
+    -- i@SecurityFilterChain
+    -- i@OnePerRequestFilter
+
+    - CSRF
+
+    - Configurer
+        - I@ WebSecurityConfigurerAdapter
+
+    - I@ UserDetails
+
+Authorization :
+    - Authorite / role
+
+
+/****************************/
+1. security_concepts_authentication :
+
+- authentication :
+    represente le Principal connecté, ses Credentials, Authorities...
+    :> accessible par DI depuis une methode de @controller
+    :> accessible depuis SecurityContexteHolder
+
+    utilisation :
+    notre API est utilisee par un robot qui se connecte chaque nuit pour utiliser nos service.
+    on souhaite authoriser le robot s'il presente un HEADER H_r
+    comment admettre accepter cette nouvelle facon d'Authentication ?
+
+    ->
+    1. Creer une nouvelle classe RobotAuth (extends AbstractAuthenticationToken, @override.. )
+        creer les authorites/roles du robots
+        creer le principal
+        creer les credentials (null la plus part du temps?)
+    2. creer un nouveau Filtre RobotFilter, qui examine le header de la requete,
+        si HEADER=H_r alors
+            instancie une RobotAuthentication,
+            la rattache au SecurityContexteHolder.setAuthentication()
+    3. enregistre le filtre dans SecurityFiltreChain
+- Principal : l'identite de l'entite connecte (email, id...)
+
+

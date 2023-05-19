@@ -1,0 +1,22 @@
+
+Section 5 – Security:
+  Objective 5.1 Explain basic security concepts
+  Objective 5.2 Use Spring Security to configure Authentication and Authorization
+  Objective 5.3 Define Method-level Security
+
+/**************************/
+
+questionnement :
+- quels mechanismes pour proteger une URL non publiques ?
+- c'est quoi @PreAuthorize ?
+- c'est quoi CORS ?
+
+problematique :
+
+concepts :
+    - authorisation
+    - authentiction
+    - ...
+
+composants de framework :
+    -

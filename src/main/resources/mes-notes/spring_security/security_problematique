@@ -1,0 +1,34 @@
+
+Spring Security est tres lié à Spring Web.
+il répond au problematique de l'authentication et l'authorization, lié aux requete recues par l'application.
+
+Use case:
+    Notre application API est composée de
+        d'une operation="getBooks", PUBLIQUE, et
+        d'une operation="addBooks", privee
+    comment faire cela ?
+
+    ->
+    1. declarer une configuration de security
+        sur notre classe @Configuration:: ajouter @EnableSecurity
+    2. dans la classe de config java (voir Java config VS annotation config)
+        declarer un bean SecurityFilterChain
+            ::>
+            @Bean pubic SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
+            HttpSecurity:: a (very) glorified SecurityFilterChain
+    3. a travers httpSecurity injecté, ajouter les regles de securité specifique à chaque URL
+
+Use Case 2 :
+    dans notre application, on veut exposer l'operation addBooks a des robots.
+    les robots n'ont pas de user/password, mais ont un header special ROBOT_HEADER={key: 'robot_k', value: 'robot_v'}
+    comment faire ?
+
+    ->
+    1. creer RobotAuthentication :: une implementation de Authentication
+        ::> RobotAuthentication extends AbstractAuthenticationToken
+    2. creer RobotAuthenticationFilter :: un Filtre qui analyse le header de requete,
+        ce filtre instantie la RobotAuthetication si Conditions respectée
+            condition:: header == ROBOT_HEADER
+        RobotAuthentication doit être attaché au SecurityContexteHolder
+    3. ajouter le filtre à la FilterChain HttpSecurity
+
