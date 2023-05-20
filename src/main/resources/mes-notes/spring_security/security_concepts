@@ -1,23 +1,31 @@
-Authentication :
-    - authentication, principal
+5 keys concepts :
+    - authentication, AuthenticationProvider
+    - SecurityFilterChain (Filter, FilterChain, HttpSecurity)
+    - SecurityContexteHolder
+    - Authorization
 
-    - AuthenticationProvider
 
-    - @EnableWebSecurity
+/********************/
+other concepts :
 
-    - Filter
+    Authentication :
+        - authentication, principal
+        - AuthenticationProvider
+        - @EnableWebSecurity
+
+    Filter
     -- i@SecurityFilterChain
     -- i@OnePerRequestFilter
 
-    - CSRF
+    CSRF
 
-    - Configurer
-        - I@ WebSecurityConfigurerAdapter
+    Configurer
+    -- I@ WebSecurityConfigurerAdapter
 
-    - I@ UserDetails
+    I@ UserDetails
 
-Authorization :
-    - Authorite / role
+    Authorization :
+        - Authorite / role
 
 
 /****************************/
@@ -25,24 +33,14 @@ Authorization :
 
 - authentication :
     represente le Principal connecté, ses Credentials, Authorities...
-    :> accessible par DI depuis une methode de @controller
-    :> accessible depuis SecurityContexteHolder
+    +> accessible par DI depuis une methode de @controller
+    +> accessible depuis SecurityContexteHolder
+- AuthenticationProvider :
+    represente une technique specifique d'authentication
 
-    utilisation :
-    notre API est utilisee par un robot qui se connecte chaque nuit pour utiliser nos service.
-    on souhaite authoriser le robot s'il presente un HEADER H_r
-    comment admettre accepter cette nouvelle facon d'Authentication ?
-
-    ->
-    1. Creer une nouvelle classe RobotAuth (extends AbstractAuthenticationToken, @override.. )
-        creer les authorites/roles du robots
-        creer le principal
-        creer les credentials (null la plus part du temps?)
-    2. creer un nouveau Filtre RobotFilter, qui examine le header de la requete,
-        si HEADER=H_r alors
-            instancie une RobotAuthentication,
-            la rattache au SecurityContexteHolder.setAuthentication()
-    3. enregistre le filtre dans SecurityFiltreChain
+    les entites connectes peuvent avoir des condi
+    :> nous avons un admin special qui n'a pas de mot de passe
+        => creer un authentication (userName =admin_
 - Principal : l'identite de l'entite connecte (email, id...)
 
 

@@ -2,6 +2,8 @@
 Spring Security est tres lié à Spring Web.
 il répond au problematique de l'authentication et l'authorization, lié aux requete recues par l'application.
 
+/***********/
+
 Use case:
     Notre application API est composée de
         d'une operation="getBooks", PUBLIQUE, et
@@ -10,7 +12,7 @@ Use case:
 
     ->
     1. declarer une configuration de security
-        sur notre classe @Configuration:: ajouter @EnableSecurity
+        sur notre classe @Configuration:: ajouter @EnableWebSecurity
     2. dans la classe de config java (voir Java config VS annotation config)
         declarer un bean SecurityFilterChain
             ::>
@@ -27,6 +29,7 @@ Use Case 2 :
     1. creer RobotAuthentication :: une implementation de Authentication
         ::> RobotAuthentication extends AbstractAuthenticationToken
     2. creer RobotAuthenticationFilter :: un Filtre qui analyse le header de requete,
+        ::> RobotAuthenticationFilter extends OnePerRequestFilter
         ce filtre instantie la RobotAuthetication si Conditions respectée
             condition:: header == ROBOT_HEADER
         RobotAuthentication doit être attaché au SecurityContexteHolder
