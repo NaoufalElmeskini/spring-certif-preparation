@@ -29,3 +29,6 @@
     1.2
     existant:
     je veux : traiter les exceptions levées dans mon controller, sans toucher aux operations  de mon controller
+
+    ->
+    hint: @ExceptionHandler
