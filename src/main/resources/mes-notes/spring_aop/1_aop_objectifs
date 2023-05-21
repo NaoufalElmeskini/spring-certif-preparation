@@ -6,5 +6,5 @@ Objective 1.6 Aspect Oriented Programming
 
 /*****************************/
 questions :
-    - expliquer @exceptionHandling et @ControllerAdvice ?
     - expliquer Aspect, Advice, Pointcut, JoinPoint, Proxy
+    - expliquer @exceptionHandling et @ControllerAdvice ?
