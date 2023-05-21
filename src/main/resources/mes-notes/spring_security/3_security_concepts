@@ -1,0 +1,52 @@
+5 keys concepts :
+    - authentication, AuthenticationProvider
+    - SecurityFilterChain (Filter, FilterChain, HttpSecurity)
+    - SecurityContexteHolder
+    - Authorization
+
+/***********************************/
+security concepts :  authentication :
+/***********************************/
+
+- authentication :
+    represente le Principal connecté, ses Credentials, Authorities...
+    +> accessible par DI depuis une methode de @controller
+        ::>
+        @GetRequest("/hello")
+        public String hello(Authentication auth){...}
+        
+    +> accessible depuis SecurityContexteHolder
+- AuthenticationProvider :
+    represente une technique specifique d'authentication
+
+    les entites connectes peuvent avoir des condi
+    :> nous avons un admin special qui n'a pas de mot de passe
+        => creer un authentication (userName =admin_
+- Principal : l'identite de l'entite connecte (email, id...)
+
+
+/********************/
+other concepts :
+
+    Authentication :
+        - authentication, principal
+        - AuthenticationProvider
+        - @EnableWebSecurity
+
+    Filter
+    -- i@SecurityFilterChain
+    -- i@OnePerRequestFilter
+
+    CSRF
+
+    Configurer
+    -- I@ WebSecurityConfigurerAdapter
+
+    I@ UserDetails
+
+    Authorization :
+        - Authorite / role
+
+
+
+

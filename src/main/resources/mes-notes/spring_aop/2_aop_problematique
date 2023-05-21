@@ -1,0 +1,31 @@
+1. problematique:
+
+
+/***************************************************/
+/***************************************************/
+1. use cases:
+    1.1
+    existant : un service avec une methode hello()
+    je veux : afficher un message 'before hello' avant chaque execution de la methode
+
+
+    ->
+    1. declarer une classe HelloAspect @Aspect
+    2. declarer cette classe comme composant Spring
+        1. @Bean dans la classe @Configuration, ou
+        1. @Component sur la classe + integrer son package dans @ComponentScan(basePackages= ...)
+    3. activer la detection AOP : sur la classe @Configuration
+        ajouter @EnableAspectJAutoProxy
+    4. dans la classe @Aspect :
+        declarer un pointcut qui s'execute BEFORE l'evenement EXECUTION de la methode hello
+        plusieurs possibilites :
+        - @Before("execution (* mon.package.MonService.hello(..))")
+        - ou bien: declarer un @PointCut, et le referencer dans l'advice @Before
+            @Pointcut("execution(void org.example.service.HelloService.hello(..))") ..... public void helloMethod()
+            @Before(value = "helloMethod()") ...... public void beforeHello() {
+
+        ...
+    /*****************/
+    1.2
+    existant:
+    je veux : traiter les exceptions levées dans mon controller, sans toucher aux operations  de mon controller

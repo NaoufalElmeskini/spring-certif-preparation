@@ -1,0 +1,35 @@
+concepts clés :
+    - aspect
+    - advice
+    - joinpoint
+    - pointcut
+    - Proxy
+
+
+
+/*******************************************/
+jointopint :
+    ::>
+    - appel de methode, execution de methode, appel de constructeur, execution de constructeur,
+     reference aux attributs, exception handling...
+
+    ref@aspectj :
+        dans un programme java, les methodes et constructeurs sont composé d'une entete et d'un corps.
+        lorsque la methode est appelé, le corps de la methode est executée.
+
+    - represente les evenements de l'execution du programme
+    - ces evenement sont des CANDIDATS qu'il est POSSIBLE d'augmenter par L'AOP,
+
+pointcut:
+advice :
+
+la declaration d'un advice/point cut dans spring aop repond  à trois questions :
+- when : quand le code sera execute
+    ::> @Before, @Around...
+- where : quel join points cibles
+    execution(* mon.package.MonService.hello(..))
+- what : traitement, code a executer
+
+@After vs @AfterReturning :
+    @After : executé en cas d'exception
+    @AfterReturning : jamais executé en cas d'exception
