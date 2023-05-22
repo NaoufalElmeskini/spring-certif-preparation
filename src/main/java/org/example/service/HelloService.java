@@ -5,6 +5,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloService {
     public void hello() {
-        System.out.println("hello!");
+        String destinataire = this.getDestinataire();
+        System.out.println("hello " + destinataire);
+    }
+
+    private String getDestinataire() {
+        return "Mom";
     }
 }

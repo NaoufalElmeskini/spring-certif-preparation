@@ -1,0 +1,103 @@
+
+ACID :
+    une transaction met en jeu plusieurs operation elementaire de lecture et ecriture
+    atomique :
+        tout ou rien
+    ...
+    isolation :
+        les transactions doit controler la visibilite des resources qu'elle contient en cours de son execution.
+        (voir concept : dirty reads)
+
+    durable :
+        persitance, meme en cas de panne
+
+/*********************************************/
+
+
+connection (DataSource) :
+        par defaut, chaque operation de JdbcTemplate utilise une Connection separe
+            jdbcTemplate.findByUserID().................nouvelle connexion
+            jdbcTemplate.findAccount()................nouvelle connexion
+
+
+readOnly :
+    @Transactional(readOnly=...) très important pour la performance...
+    par defaut, les operation de jdbcTemplate necessite chacune une Nouvelle Connection ...
+    => si plusieurs lectures dans ma methode :: alors plusieurs connections oouvertes
+    => si readOnly :: 1 seule connection ouverte
+
+/*********************************************/
+
+Transaction local/globale :
+    local = 1 seule source de donnée (::> DAtabase)
+    global (distribue) = plusieurs seule source de données (::> 1 DB oracle + 1 DB SQL + 1 MessageQueue...)
+
+
+problematique transaction global :
+
+    en cas de transaction global et de * sources de données,
+     => necessaire d'ouvrir/fermer/gerer/traiter la connexion et transaction pour chacun des sources
+        messagequeue : connection.getSession
+        jdbc : connection.getConnection()
+        jpa : entityManager.getTransaction()
+
+    -> solution possible : JTA (Java Transaction API)
+        probleme : pas très bien car necessite Serveur d'application Lourd
+            et surtout : c'est different de Spring qui est genial (lol)
+
+/********************************************/
+
+Propagation :
+    la methode m1 appelle m2
+    m1 : @Transactional AccountService.updateAccount()
+    m2 : @Transactional BankClientService.getClientDetails()
+
+    question :
+        m2 doit-elle creer une nouvelle transaction ? (en suspendant la transaction en cours de m1)
+        ou la transaction mère devrait-elle etre etendu (propagée) à m2 ?
+
+
+    @Transactional(propagation=propagaton.Required) : l'operation doit etre faite dans une transaction
+        - si existe : rejoindre la transaction
+        - sinon : creer une nouvelle transaction
+    @Transactional(propagation=propagaton.Requires_new) : cree necessairement une nouvelle transaction
+
+Isolation :
+    @Transactional(isolation=...)
+    ISOLATION_READ_UNCOMMITTED : allow dirty reads (uncommited changes)
+    ISOLATION_READ_COMMITTED : doesn't allow dirty reads
+    ISOLATION_REPEATABLE_READ : If a row is read twice in the same transaction, the result will always be the same.
+    DEFAULT: infere par la DB (::> MAriaDB = Repeatable_read, Oracle=autre_chose...)
+    traite comment les resources à l'interieur des transactions devront etre exposes,
+    notemment dans le cas de programmation mutithread
+
+    par defaut, Spring  = DEFAULT
+
+/**************************************/
+
+utilisation dans spring :
+    3 etapes :
+        - declarer un bean @PlateformTransactionManager
+        - @EnableTransactionManagement (sur la class de @conf)
+        - marquer les methode @Transactionnal
+
+    interface @PlateformTransactionManager :
+        implementations disponibles :
+            JMSTransactionManager
+            JpaTransactionManager
+            JtaTransactionManager
+            DataSourceTransactionManager
+            ...
+
+
+/**************************************/
+rollback :
+    @Transactional(rollbackFor=MyCheckedException, norollbackFor=OtherException)
+
+    par defaut, triggered seulement en cas de RuntimeException
+
+Transaction en Test :
+
+    @Transaction @Test
+    monTest()
+    => les changement dans monTest() seront rollback apres execution de methode
