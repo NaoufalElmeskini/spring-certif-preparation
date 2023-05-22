@@ -73,6 +73,10 @@ Isolation :
 
     par defaut, Spring  = DEFAULT
 
+read phenomena :
+    - dirty read
+    - repeatable read
+    - phantom read
 /**************************************/
 
 utilisation dans spring :

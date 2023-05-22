@@ -15,6 +15,10 @@ jdbc:
       Statement, PreparedStatement... : contient la requete literale a executer par la base
       ResultSet: represente le resultat d'une requete
 
+ORM (Object Relation Mapping):
+  est un framework qui fournit une technologie de mapping entre Relation (DB) et Objet (Java)
+  souvent implemente le standard JPA
+  ::> Hibernate, EclipseLink, ...
 ###########
 spring-data-jdbc:
   :
