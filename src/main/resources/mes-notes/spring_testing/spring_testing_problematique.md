@@ -1,9 +1,21 @@
 
 
 ## 1.problematique :
-    spring boot testing repond à la problematique d'injection de dependance dans
-     le contexte de test.
-    
+
+- JUnit, test unitaire :
+    le test unitarie a pour but de tester un composant sans regarder ses
+    interactions avec le reste du systeme.
+
+- pourquoi utiliser spring dans nos tests unitaires ?
+>spring testing repond à la problematique d'injection de dependance dans le
+contexte de test.
+
+-Comment je peux injecter automatiquement mon composant a tester ?
+>voir use cases
+
+- les extensions JUnit / spring permettent-elles de rajouter un traitement 
+  sur la classe de test, ou la classe testée ?
+> classe de test uniquement (set un logger, resolve parametres, )
  
 ## 2. use cases :
     

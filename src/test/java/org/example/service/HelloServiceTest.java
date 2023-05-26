@@ -3,11 +3,9 @@ package org.example.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@SpringJUnitConfig
+@SpringJUnitConfig(classes = MyTestConf.class)
 class HelloServiceTest {
     @Autowired
     private HelloService helloService;
@@ -21,12 +19,5 @@ class HelloServiceTest {
         Assertions.assertEquals(6, actual);
     }
 
-    @Configuration
-    static class MyTestConf{
-        @Bean
-        public HelloService helloService() {
-            return new HelloService();
-        }
-    }
 
 }
