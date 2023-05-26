@@ -12,4 +12,8 @@ public class HelloService {
     private String getDestinataire() {
         return "Mom";
     }
+
+    public int calculerAddition(int a, int b) {
+        return a + b;
+    }
 }

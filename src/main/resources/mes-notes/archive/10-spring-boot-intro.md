@@ -1,24 +1,25 @@
 # 10- Spring Boot intro
 
-Plan :
+## 0.Plan :
 - what is spring boot
 - features
-        dependancy management, 
-        auto-config,
-        packaging and runtime, 
-        integration testing, 
+  - dependancy management, 
+  - auto-config, 
+  - integration testing,
+  - packaging and runtime, 
 
 
 ## 1. c'est quoi spring boot ?
 
 Spring boot : prend une vue "opiniated" de spring et de librairies tierses
-    => fait bcp de traitement sous-le capot pout
+    => fait bcp de traitement sous-le capot pour
 - offre un comportement par defaut
 - offre aussi possibilité de changer ce comportement si necessaire
 
 ## 2. dependancy management
 
-- probleme : dependances (ex:maven) de projet peut poser des problemes de divergence, jars incompatibles lors de passage de version etc 
+-  probleme : dependances (ex:maven) de projet peut poser des problemes de 
+   divergence, jars incompatibles lors de passage de version etc 
 - solution :
   - sprint boot parent / starters
   - ensemble de dependances versionnées comme package
@@ -34,20 +35,39 @@ Spring boot : prend une vue "opiniated" de spring et de librairies tierses
 @EnableAutoConfiguration :
 - permet a spring de creer automatiquement des beans qu'il pense necessaire
 - exemeple :
-    - dependance tomcat-embeded.jar dispo => probablement le projet voudra  TomcatServletWebServerFactory disponible comme bean
+     - dependance tomcat-embeded.jar dispo => probablement le projet voudra  
+       TomcatServletWebServerFactory disponible comme bean
 
 tres commun : utiliser
 + @SpringBootConfiguration
 + @EnableAutoConfiguration
 + @ComponentScan
-  ==> alias = *@SpringBootApplication(scanBasePackages="")*
+
+==> alias = *@SpringBootApplication(scanBasePackages="")*
 
 auto-configuration - exemples :
 ![img_7.png](img_7.png)
 
 
+## 4. integration testing
 
-## 4. packaging and runtime
+ITs sans spring boot :
+- option 1 : @extendWith(SpringExtension.class) + @ContextConfiguration(basicConfig.class)
+- option 2 (equivalent) : = @SpringJUnitConfig(basicConfig.class)
+
+(bonus : +@TestPropertySource(properties={"username=foo", "password=bar"}, locations="classpath:todo-test.properties"))
+
+
+ITs avec spring boot :
+- @SpringBootTest :
+    - annotation très lourde car charge tout l'application contexte !
+    - par defaut cherche la configuration @SpringBootConfiguration
+    - charge tous les beans disponibles dans le Application Contexte
+
+![img_9.png](img_9.png)
+
+
+## 5. packaging and runtime
 
 - plugin interessant fournie par Spring Boot : spring-boot-maven-plugin
 - plugin permet d'etendre le goal maven : 'package' => permet de packager en 2 jars :
@@ -63,20 +83,3 @@ problematique : deployer notre application sur un env n'ayant pas de java (ex: s
 
 - utilise buildpacks.io pour la container-ization
 
-
-## 5. integration testing
-
-ITs sans spring boot :
-- option 1 : @extendWith(SpringExtension.class) + @ContextConfiguration(basicConfig.class)
-- option 2 (equivalent) : = @SpringJUnitConfig(basicConfig.class) 
-
-(bonus : +@TestPropertySource(properties={"username=foo", "password=bar"}, locations="classpath:todo-test.properties"))
-
-
-ITs avec spring boot :
-- @SpringBootTest :
-  - annotation très lourde car charge tout l'application contexte !
-  - par defaut cherche la configuration @SpringBootConfiguration
-  - charge tous les beans disponibles dans le Application Contexte
-
-![img_9.png](img_9.png)
