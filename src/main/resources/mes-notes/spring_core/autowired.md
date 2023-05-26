@@ -14,3 +14,6 @@ l'injection de MonRepo dans MonService se fait :
     
 }
 ```
+
+- autowired ne peut etre utilise que dans un component Spring !
+  - question => pourquoi autowired marche dans une classe de test ?
