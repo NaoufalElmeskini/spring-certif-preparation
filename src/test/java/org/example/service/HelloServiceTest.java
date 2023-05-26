@@ -2,13 +2,15 @@ package org.example.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
-@SpringJUnitConfig
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = HelloServiceTest.MyTestConf.class)
 class HelloServiceTest {
     @Autowired
     private HelloService helloService;
@@ -23,7 +25,7 @@ class HelloServiceTest {
     }
 
     @Configuration
-    static class TestConf{
+    static class MyTestConf{
         @Bean
         public HelloService helloService() {
             return new HelloService();
