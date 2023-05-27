@@ -70,6 +70,7 @@ Propagation :
         REQUIRED        Support a current transaction, create a new one if none exists.
         REQUIRES_NEW    Create a new transaction, and suspend the current transaction if one exists.
         SUPPORTS        Support a current transaction, execute non-transactionally if none exists.
+- default : PROPAGATION_REQUIRED
 ******************
 
 transaction anomalies, read phenomena :
