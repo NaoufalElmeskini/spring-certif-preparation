@@ -1,6 +1,13 @@
 1. problematique:
 
 
+- quelle difference entre
+    @After et @AfterReturning ?
+>
+@After : executé en cas d'exception
+@AfterReturning : jamais executé en cas d'exception
+
+
 /***************************************************/
 /***************************************************/
 1. use cases:

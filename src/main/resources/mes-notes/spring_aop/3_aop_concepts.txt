@@ -8,7 +8,7 @@ concepts clés :
 
 
 /*******************************************/
-jointopint :
+jointpoint :
     ::>
     - appel de methode, execution de methode, appel de constructeur, execution de constructeur,
      reference aux attributs, exception handling...
@@ -29,7 +29,3 @@ la declaration d'un advice/point cut dans spring aop repond  à trois questions 
 - where : quel join points cibles
     execution(* mon.package.MonService.hello(..))
 - what : traitement, code a executer
-
-@After vs @AfterReturning :
-    @After : executé en cas d'exception
-    @AfterReturning : jamais executé en cas d'exception

@@ -62,21 +62,39 @@ Propagation :
         - sinon : creer une nouvelle transaction
     @Transactional(propagation=propagaton.Requires_new) : cree necessairement une nouvelle transaction
 
-Isolation :
-    @Transactional(isolation=...)
-    ISOLATION_READ_UNCOMMITTED : allow dirty reads (uncommited changes)
-    ISOLATION_READ_COMMITTED : doesn't allow dirty reads
-    ISOLATION_REPEATABLE_READ : If a row is read twice in the same transaction, the result will always be the same.
-    DEFAULT: infere par la DB (::> MAriaDB = Repeatable_read, Oracle=autre_chose...)
-    traite comment les resources à l'interieur des transactions devront etre exposes,
-    notemment dans le cas de programmation mutithread
+- possible values :
+        MANDATORY       Support a current transaction, throw an exception if none exists.
+        NESTED          Execute within a nested transaction if a current transaction exists, behave like REQUIRED otherwise.
+        NEVER           Execute non-transactionally, throw an exception if a transaction exists.
+        NOT_SUPPORTED    Execute non-transactionally, suspend the current transaction if one exists.
+        REQUIRED        Support a current transaction, create a new one if none exists.
+        REQUIRES_NEW    Create a new transaction, and suspend the current transaction if one exists.
+        SUPPORTS        Support a current transaction, execute non-transactionally if none exists.
+/******************/
 
-    par defaut, Spring  = DEFAULT
-
-read phenomena :
+transaction anomalies, read phenomena :
     - dirty read
-    - repeatable read
+    - non repeatable read
     - phantom read
+
+/******/
+(personal note)
+read phenomena dirtiness (high..low):
+- dirty
+- non_repeatable
+- phantom
+
+/**************/
+spring, levels of isolation (high..low):
+
+- serializable  (phantom: no, non_repeatable: no, dirty: no)
+- repeatable    (phantom: yes, non_repeatable:no , dirty: no)
+- commited      (phantom: yes, non_repeatable: yes, dirty: no)
+- uncommited    (phantom: yes, non_repeatable: yes, dirty: yes)
+- default       (inferré par le default du GDBC)
+(par defaut, Spring  = DEFAULT)
+
+
 /**************************************/
 
 utilisation dans spring :

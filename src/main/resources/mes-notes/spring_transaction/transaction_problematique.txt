@@ -1,0 +1,13 @@
+
+quelle difference entre
+    Propagation.Not_Supported et NEVER ?
+les deux indiquent que le traitement ne va pas se faire dans une transaction
+> not_supported : si une transaction existe,    => transaction suspendue
+> never : si transaction existe                 => une EXCEPTION
+
+quelle difference entre
+     et Propagation.required et Propagation.MANDATORY ?
+les deux necessite une transaction existante.
+> required(_new): si transaction non trouvé => transaction créée
+> mendatory: necessite une transaction existante. sinon => EXCEPTION
+
