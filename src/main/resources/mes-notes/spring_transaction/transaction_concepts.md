@@ -11,7 +11,7 @@ ACID :
     durable :
         persitance, meme en cas de panne
 
-/*********************************************/
+*********************************************
 
 
 connection (DataSource) :
@@ -19,20 +19,19 @@ connection (DataSource) :
             jdbcTemplate.findByUserID().................nouvelle connexion
             jdbcTemplate.findAccount()................nouvelle connexion
 
-
+***
 readOnly :
     @Transactional(readOnly=...) très important pour la performance...
     par defaut, les operation de jdbcTemplate necessite chacune une Nouvelle Connection ...
     => si plusieurs lectures dans ma methode :: alors plusieurs connections oouvertes
     => si readOnly :: 1 seule connection ouverte
 
-/*********************************************/
-
+*********************************************
 Transaction local/globale :
     local = 1 seule source de donnée (::> DAtabase)
     global (distribue) = plusieurs seule source de données (::> 1 DB oracle + 1 DB SQL + 1 MessageQueue...)
 
-
+***
 problematique transaction global :
 
     en cas de transaction global et de * sources de données,
@@ -45,7 +44,7 @@ problematique transaction global :
         probleme : pas très bien car necessite Serveur d'application Lourd
             et surtout : c'est different de Spring qui est genial (lol)
 
-/********************************************/
+********************************************
 
 Propagation :
     la methode m1 appelle m2
@@ -62,6 +61,7 @@ Propagation :
         - sinon : creer une nouvelle transaction
     @Transactional(propagation=propagaton.Requires_new) : cree necessairement une nouvelle transaction
 
+***
 - possible values :
         MANDATORY       Support a current transaction, throw an exception if none exists.
         NESTED          Execute within a nested transaction if a current transaction exists, behave like REQUIRED otherwise.
@@ -70,21 +70,21 @@ Propagation :
         REQUIRED        Support a current transaction, create a new one if none exists.
         REQUIRES_NEW    Create a new transaction, and suspend the current transaction if one exists.
         SUPPORTS        Support a current transaction, execute non-transactionally if none exists.
-/******************/
+******************
 
 transaction anomalies, read phenomena :
     - dirty read
     - non repeatable read
     - phantom read
 
-/******/
+***
 (personal note)
 read phenomena dirtiness (high..low):
 - dirty
 - non_repeatable
 - phantom
 
-/**************/
+***
 spring, levels of isolation (high..low):
 
 - serializable  (phantom: no, non_repeatable: no, dirty: no)
@@ -94,9 +94,7 @@ spring, levels of isolation (high..low):
 - default       (inferré par le default du GDBC)
 (par defaut, Spring  = DEFAULT)
 
-
-/**************************************/
-
+**************************************
 utilisation dans spring :
     3 etapes :
         - declarer un bean @PlateformTransactionManager
@@ -112,14 +110,16 @@ utilisation dans spring :
             ...
 
 
-/**************************************/
+**************************************
 rollback :
     @Transactional(rollbackFor=MyCheckedException, norollbackFor=OtherException)
 
     par defaut, triggered seulement en cas de RuntimeException
 
+***
 Transaction en Test :
 
     @Transaction @Test
     monTest()
     => les changement dans monTest() seront rollback apres execution de methode
+****************************************
