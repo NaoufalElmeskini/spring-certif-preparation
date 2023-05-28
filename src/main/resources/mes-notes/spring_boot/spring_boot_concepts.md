@@ -103,7 +103,8 @@ option pour controler la configuration utilisée :
 ![img_15.png](../archive/img_15.png)
 
 3. exclure certaines configuration de l'auto-conf :
-    - @EnableAutoConfiguration(exclude=...)
+    - @EnableAutoConfiguration(exclude=MaClass.class)
+    - @EnableAutoConfiguration(excludeName="com.pa.MaClass")
     - dans app.properties : spring.autoconfigure.exclude = ...
       ![img_16.png](../archive/img_16.png)
 

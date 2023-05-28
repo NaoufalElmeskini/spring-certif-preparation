@@ -29,3 +29,26 @@ la declaration d'un advice/point cut dans spring aop repond  à trois questions 
 - where : quel join points cibles
     execution(* mon.package.MonService.hello(..))
 - what : traitement, code a executer
+
+
+**********************************
+![img.png](img.png)
+
+proxy mechanisms in spring :
+
+2 facons :
+- jdk dynamique (prefere)
+- cglib
+
+CGLib necessite plus de consideration :
+- les methodes ne doivent pas être final
+- ajouter des dependances CGlib
+- le constructeurs de la classe Advised est appelée 2 fois
+**********************************
+class based proxy, interface based proxy :
+***
+class based proxy :
+***
+interface based proxy :
+
+***********************************
