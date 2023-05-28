@@ -12,7 +12,7 @@ Un @RestController, moderne, ne passe pas à #ViewResolver et renvoit une
 reponse http directement. 
 =>
 une methode de @Controller : renvoit un ModelAndView
-une methode de @RestController : renvoit un Json, basé sur ResponseBody
+une methode de @RestController : renvoit une #ressource (Json, xml... basé sur ResponseBody)
 
 ***
 Model :

@@ -46,7 +46,7 @@ tres commun : utiliser
 ==> alias = *@SpringBootApplication(scanBasePackages="")*
 
 auto-configuration - exemples :
-![img_7.png](img_7.png)
+![img_7.png](../archive/img_7.png)
 
 
 ## 4. integration testing
@@ -64,7 +64,7 @@ ITs avec spring boot :
     - par defaut cherche la configuration @SpringBootConfiguration
     - charge tous les beans disponibles dans le Application Contexte
 
-![img_9.png](img_9.png)
+![img_9.png](../archive/img_9.png)
 
 
 ## 5. packaging and runtime
@@ -79,7 +79,7 @@ ITs avec spring boot :
 problematique : deployer notre application sur un env n'ayant pas de java (ex: sur le cloud...)
 => solution : docker
 - spring-boot-maven-plugin fournie aussi goal : spring-boot:build-image
-![img_8.png](img_8.png)
+![img_8.png](../archive/img_8.png)
 
 - utilise buildpacks.io pour la container-ization
 
