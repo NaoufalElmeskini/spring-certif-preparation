@@ -20,3 +20,16 @@ Junit extension :
     logger (#post_processing ) 
   - ...
 
+*********************************
+@ContextConfiguration
+
+on peut specifier le fichier de configuration par :
+
+default : 
+@contextConfiguration class maTestClass
+=> cherche par defaut le fichier maTestClass-contexte.xml
+
+localisation : @ContextConfiguration(locations="test-contexte.xml")
+
+class :@ContextConfiguration(classes={...})
+**********************************
